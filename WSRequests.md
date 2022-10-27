@@ -240,7 +240,7 @@ Returns a map of registered resource names (name:resourceID) as a JSON object
 
 ```javascript
 {
-   "exampleMember" :  // <string> The resourceID that can be used to upload resources to the server, see HTTP requests section
+   "exampleMember1" :  // <string> The resourceID that can be used to upload resources to the server, see HTTP requests section
 } // <object> Map of registered resources
 ```
 
@@ -391,7 +391,7 @@ Returns a list of players on this host (keys are player IDs)
 ```javascript
 {
    // <object> 
-   "exampleMember" : 
+   "exampleMember1" : 
    {
       "chat" : , // <bool> True/false if you can chat with this player
       "nickname" : , // <string> The display name of this player
@@ -430,7 +430,11 @@ No request parameters required.
 
 #### Return Value
 
-Does not return anything (null)
+If successfull
+
+```javascript
+ // <any> [optional] The state of the game
+```
 
 ---
 
@@ -440,6 +444,33 @@ Each game type is a little different, so there are some requests which are only 
 Additionally, the type of the response to the ***bet*** request (see above) is also determined by the type of game.
 
 ## Roulette
+
+The parameters of **bet** requests on this game host should conform with the following schema:
+```javascript
+{
+   // <object> [optional] Map of bet placements on preset fields
+   "betPresets" : 
+   {
+      "exampleMember1" :  // <uint> [REQUIRED] The amount to bet on this field
+   },
+   "bets" : 
+   [
+      // <object> [REQUIRED] 
+      {
+         "X" : , // <uint> [REQUIRED] The X coordinate in the bet table
+         "Y" : , // <uint> [REQUIRED] The Y coordinate in the bet table
+         "amount" :  // <uint> [REQUIRED] The amount to bet on this field
+      }
+   ], // <array> [optional] Array of bet placements
+   "gameID" :  // <uint> [REQUIRED] The ID of the game to register in (current game)
+} // <object> [REQUIRED] 
+```
+
+The return value of **bet** requests on this game host look like this:
+
+```javascript
+ // <any> [optional] 
+```
 
 ### config
 
@@ -451,7 +482,11 @@ No request parameters required.
 
 #### Return Value
 
-Does not return anything (null)
+If successfull
+
+```javascript
+{} // <object> The config of this roulette game
+```
 
 ---
 
@@ -465,7 +500,16 @@ No request parameters required.
 
 #### Return Value
 
-Does not return anything (null)
+If successful
+
+```javascript
+[
+   [
+      , // <uint> The game round ID
+       // <int> Winning number
+   ] // <array> Information of the played game
+] // <array> List of games played on this host
+```
 
 ---
 
@@ -483,7 +527,87 @@ Request parameters are **required** and are parsed with the following schema:
 
 #### Return Value
 
-Does not return anything (null)
+If successfull
+
+```javascript
+{
+   // <object> The min/max bets per bet field type
+   "betTypes" : 
+   {
+      // <object> Limits for bets on 3 numbers
+      "12to1" : 
+      {
+         "max" : 0, // <uint> [optional] The maximum bet on TRASVESALES (0 for unlimited)
+         "min" : 0 // <uint> [optional] The minimum bet on TRASVESALES
+      },
+      // <object> Limits for split bets
+      "18to1" : 
+      {
+         "max" : 0, // <uint> [optional] The maximum bet on CAVALS (0 for unlimited)
+         "min" : 0 // <uint> [optional] The minimum bet on CAVALS
+      },
+      // <object> Limits for bets on half of the board
+      "2to1" : 
+      {
+         "max" : 0, // <uint> [optional] The maximum bet on HALVES (0 for unlimited)
+         "min" : 0 // <uint> [optional] The minimum bet on HALVES
+      },
+      // <object> Limits for straight-up bets
+      "36to1" : 
+      {
+         "max" : 0, // <uint> [optional] The maximum bet on PLAIN NUMBERS (0 for unlimited)
+         "min" : 0 // <uint> [optional] The minimum bet on PLAIN NUMBERS
+      },
+      // <object> Limits for bets on thirds
+      "3to1" : 
+      {
+         "max" : 0, // <uint> [optional] The maximum bet on THIRDS (0 for unlimited)
+         "min" : 0 // <uint> [optional] The minimum bet on THIRDS
+      },
+      // <object> Limits for bets on 6 numbers
+      "6to1" : 
+      {
+         "max" : 0, // <uint> [optional] The maximum bet on SIXTHS (0 for unlimited)
+         "min" : 0 // <uint> [optional] The minimum bet on SIXTHS
+      },
+      // <object> Limits for bets on 5 numbers
+      "7to1" : 
+      {
+         "max" : 0, // <uint> [optional] The maximum bet on FIFTHS field (0 for unlimited)
+         "min" : 0 // <uint> [optional] The minimum bet on FIFTHS
+      },
+      // <object> Limits for corner bets
+      "9to1" : 
+      {
+         "max" : 0, // <uint> [optional] The maximum bet on CARRES field (0 for unlimited)
+         "min" : 0 // <uint> [optional] The minimum bet on CARRES
+      },
+      // <object> Limits for bets on les figures (4 number bet which can be upgraded to TOUT VA)
+      "les-figures" : 
+      {
+         "max" : 0, // <uint> [optional] The maximum bet on LES FIGURES (0 for unlimited)
+         "min" : 0 // <uint> [optional] The minimum bet on LES FIGURES
+      },
+      // <object> How Tout-Va behaves
+      "tout-va" : 
+      {
+         "multiplier" : 81 // <uint> [optional] The win multiplier for this field [The win multiplier for this field]
+      }
+   },
+   "chipValues" : 
+   [
+      1, // <uint> [optional] The value of a chip in credits
+      1, // <uint> [optional] The value of a chip in credits
+      1, // <uint> [optional] The value of a chip in credits
+      1, // <uint> [optional] The value of a chip in credits
+      1 // <uint> [optional] The value of a chip in credits
+   ], // <array> [optional] The chip values in credits | Must contain exactly 5 members
+   "maxBet" : 0, // <uint> [optional] The maximum total bet (0 for unlimited)
+   "maxNumBets" : 0, // <uint> [optional] The maximum number of bet fields that can be bet in a single game (0 for unlimited)
+   "minBet" : 0, // <uint> [optional] The minimum total bet
+   "tableWinLimit" : 0 // <uint> [optional] The maximum number of credits that can be won in a single game (0 for unlimited)
+} // <object> The configuration of the stake
+```
 
 ---
 
@@ -502,6 +626,32 @@ Does not return anything (null)
 ---
 
 ## GameartSlotGame
+
+The parameters of **bet** requests on this game host should conform with the following schema:
+```javascript
+[
+   // <object> [REQUIRED] 
+   {
+      "action" : "bet", // <string> [optional] The action to execute [The action to execute]
+      "context" : 
+      [
+         , // <uint> [REQUIRED] Bet parameter
+          // <uint> [REQUIRED] Bet parameter
+      ] // <array> [REQUIRED] Bet information | Must contain exactly 2 members
+   },
+   // <object> [REQUIRED] 
+   {
+      "action" : "play", // <string> [optional] The action to execute [The action to execute]
+      "context" :  // <any> [optional] 
+   }
+] // <array> [REQUIRED] List of actions to execute
+```
+
+The return value of **bet** requests on this game host look like this:
+
+```javascript
+ // <any> [optional] 
+```
 
 ### action
 
@@ -553,9 +703,52 @@ Does not return anything (null)
 
 ## VirtualRoulette
 
+The parameters of **bet** requests on this game host should conform with the following schema:
+```javascript
+{
+   // <object> [optional] Map of bet placements on preset fields
+   "betPresets" : 
+   {
+      "exampleMember1" :  // <uint> [REQUIRED] The amount to bet on this field
+   },
+   "bets" : 
+   [
+      // <object> [REQUIRED] 
+      {
+         "X" : , // <uint> [REQUIRED] The X coordinate in the bet table
+         "Y" : , // <uint> [REQUIRED] The Y coordinate in the bet table
+         "amount" :  // <uint> [REQUIRED] The amount to bet on this field
+      }
+   ] // <array> [optional] Array of bet placements
+} // <object> [REQUIRED] 
+```
+
+The return value of **bet** requests on this game host look like this:
+
+```javascript
+ // <any> [optional] 
+```
+
 No special requests for this host
 
 ## GameartTableGame
+
+The parameters of **bet** requests on this game host should conform with the following schema:
+```javascript
+[
+   // <object> [REQUIRED] 
+   {
+      "action" : , // <string> [REQUIRED] The action to execute [The action to execute]
+      "context" :  // <any> [optional] 
+   }
+] // <array> [REQUIRED] List of actions to execute
+```
+
+The return value of **bet** requests on this game host look like this:
+
+```javascript
+ // <any> [optional] 
+```
 
 ### action
 

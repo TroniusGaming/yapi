@@ -184,7 +184,7 @@ The following HTTP response codes can occur:
       "actions" : 
       {
          // <object> 
-         "exampleMember" : 
+         "exampleMember1" : 
          {
             // <object> 
             "schema" : 
@@ -195,7 +195,7 @@ The following HTTP response codes can occur:
                "schema" : 
                {
                   // <object> 
-                  "exampleMember" : 
+                  "exampleMember1" : 
                   {
                      // <object> [optional] Another schema object defining how children of this container should be structured
                      "child-schema" : ,
@@ -213,7 +213,7 @@ The following HTTP response codes can occur:
                      // <object> [optional] Member values which need to have conditions met for this value to be editable
                      "edit-conditions" : 
                      {
-                        "exampleMember" : 
+                        "exampleMember1" : 
                         [
                            // <object> 
                            {
@@ -299,7 +299,7 @@ The following HTTP response codes can occur:
    "schema" : 
    {
       // <object> 
-      "exampleMember" : 
+      "exampleMember1" : 
       {
          // <object> [optional] Another schema object defining how children of this container should be structured
          "child-schema" : ,
@@ -317,7 +317,7 @@ The following HTTP response codes can occur:
          // <object> [optional] Member values which need to have conditions met for this value to be editable
          "edit-conditions" : 
          {
-            "exampleMember" : 
+            "exampleMember1" : 
             [
                // <object> 
                {
