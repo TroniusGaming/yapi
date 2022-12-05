@@ -222,11 +222,14 @@ The following HTTP response codes can occur:
                            }
                         ] // <array> [optional] List of conditions for this member
                      },
+                     "flags" : 
+                     [
+                         // <string> A single flag
+                     ], // <array> [optional] List of flags
                      "interval" : 0.0, // <real> [optional] Rounding interval of the value (valid for numerical values only)
                      "max-children" : 0, // <uint> [optional] The maximum number of children
                      "min-children" : 0, // <uint> [optional] The minimum number of children
                      "optional" : false, // <bool> [optional] True/false if this value is optional
-                     "scope" : "Default", // <string> [optional] True/false if this value is optional [True/false if this value is optional]
                      "type" :  // <string> The type of this value [The type of this value]
                   }
                }
@@ -326,11 +329,14 @@ The following HTTP response codes can occur:
                }
             ] // <array> [optional] List of conditions for this member
          },
+         "flags" : 
+         [
+             // <string> A single flag
+         ], // <array> [optional] List of flags
          "interval" : 0.0, // <real> [optional] Rounding interval of the value (valid for numerical values only)
          "max-children" : 0, // <uint> [optional] The maximum number of children
          "min-children" : 0, // <uint> [optional] The minimum number of children
          "optional" : false, // <bool> [optional] True/false if this value is optional
-         "scope" : "Default", // <string> [optional] True/false if this value is optional [True/false if this value is optional]
          "type" :  // <string> The type of this value [The type of this value]
       }
    }

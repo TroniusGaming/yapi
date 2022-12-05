@@ -127,16 +127,6 @@ No data passed with this event.
 
 ---
 
-### connection-lost
-
-Triggered when the server loses connection with the game client
-
-#### Event Data
-
-No data passed with this event.
-
----
-
 ### game-round-end
 
 Triggered when a game round ends
@@ -187,6 +177,27 @@ No data passed with this event.
 
 ---
 
+### lock-changed
+
+Triggered when the locked state changes
+
+#### Event Data
+
+```javascript
+{
+   "new" : 
+   [
+       // <string>  []
+   ], // <array> 
+   "old" : 
+   [
+       // <string>  []
+   ] // <array> 
+} // <object> 
+```
+
+---
+
 ### log
 
 Triggered when the game client logs something
@@ -200,6 +211,16 @@ No data passed with this event.
 ### payout
 
 Triggered when funcs are withdrawn from the player account
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### persistence-changed
+
+Triggered when the persist mode of the player changes
 
 #### Event Data
 
@@ -430,6 +451,10 @@ No data passed with this event.
 ---
 
 ## GameartTableGame
+
+No special events for this host
+
+## Blackjack
 
 No special events for this host
 

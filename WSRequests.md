@@ -7,6 +7,59 @@ WebSocket requests on the YServer are executed over the imaxa protocol as messag
 Regardless of the type of game or casino provider, these requests are always available to the game client.
 They are used for game client logic that is not sensitive to game-specific or provider-specific behavior.
 
+### accounting-round-history
+
+Get the history of player accounting rounds [request is unavailable if player is locked in any lock level]
+
+#### Parameters
+
+No request parameters required.
+
+#### Return Value
+
+Returns a list of accounting round snapshots - played rounds of this player
+
+```javascript
+[
+   // <object> 
+   {
+      "aid" : , // <string> Accounting round ID
+      // <object> 
+      "balance" : 
+      {
+         "after" : [], // <array> The balance after the round
+         "before" : [] // <array> The balance before the round
+      },
+      "data" : , // <any> [optional] Extra data attributed to the round
+      "denom" : , // <real> The denomination in this accounting round
+      "endT" : , // <uint> The end timestamp
+      "endpoint" : , // <string> Endpoint of this round
+      "grounds" : 
+      [
+          // <string> Game round ID
+      ], // <array> List of game rounds played in this accounting round
+      "startT" : , // <uint> The start timestamp
+      "totalBet" : [], // <array> The total bet in this round
+      "totalWin" : [], // <array> The total win in this round
+      "transactions" : 
+      [
+         // <object> 
+         {
+            "aid" : , // <string> The accounting round ID in which this transaction occured
+            "credits" : [], // <array> The transacted amount
+            "data" : , // <any> [optional] Extra data attributed to this transaction
+            "gid" : , // <string> The game round ID in which this transaction occured
+            "id" : , // <string> Transaction id
+            "result" : , // <string> The result of the transaction [The result of the transaction]
+            "source" :  // <string> What is responsible for this transaction [What is responsible for this transaction]
+         }
+      ] // <array> Array of transactions in this round
+   }
+] // <array> List of actions
+```
+
+---
+
 ### action-enabled
 
 Change the enabled status of a registered action (landbase integration)
@@ -47,9 +100,23 @@ Returns the current credit balance of the player
 
 ---
 
+### cancel-exit
+
+Cancel a pending user close
+
+#### Parameters
+
+No request parameters required.
+
+#### Return Value
+
+Does not return anything (null)
+
+---
+
 ### chat
 
-Post a message in chat [request is unavailable if player is locked in UserLock or Blocked or Handpay or LockProvider or LockHost or System or Closing]
+Post a message in chat [request is unavailable if player is locked in UserLock or UserClose or Blocked or Handpay or LockProvider or LockHost or System or SystemClose]
 
 #### Parameters
 
@@ -90,6 +157,20 @@ Request parameters are **required** and are parsed with the following schema:
    "subState" : 0 // <uint> [optional] The sub-state ID
 } // <object> [REQUIRED] 
 ```
+
+#### Return Value
+
+Does not return anything (null)
+
+---
+
+### exit
+
+Signal a user-initiated close
+
+#### Parameters
+
+No request parameters required.
 
 #### Return Value
 
@@ -248,7 +329,7 @@ Returns a map of registered resource names (name:resourceID) as a JSON object
 
 ### station-lock
 
-Lock this play station [request is unavailable if player is locked in Blocked or AwaitAuth or Handpay or LockProvider or LockHost or System or Closing]
+Lock this play station [request is unavailable if player is locked in UserClose or Blocked or AwaitAuth or Handpay or LockProvider or LockHost or System or SystemClose]
 
 #### Parameters
 
@@ -515,7 +596,7 @@ If successful
 
 ### select-stake
 
-Select a stake [request is unavailable if player is locked in UserLock or Blocked or AwaitAuth or Handpay or LockProvider or System or Closing]
+Select a stake [request is unavailable if player is locked in UserLock or UserClose or Blocked or AwaitAuth or Handpay or LockProvider or System or SystemClose]
 
 #### Parameters
 
@@ -797,6 +878,23 @@ No request parameters required.
 Does not return anything (null)
 
 ---
+
+## Blackjack
+
+The parameters of **bet** requests on this game host should conform with the following schema:
+```javascript
+{
+   "type" :  // <string> [REQUIRED] The type of bet [The type of bet]
+} // <object> [REQUIRED] 
+```
+
+The return value of **bet** requests on this game host look like this:
+
+```javascript
+ // <any> [optional] 
+```
+
+No special requests for this host
 
 ## Provider-Specific Player Requests
 
