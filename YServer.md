@@ -1,6 +1,6 @@
 # Y Server Documentation
 
-***Version 2.0.12***
+***Version 2.11.15***
 
 ## Communication concept
 
@@ -62,14 +62,12 @@ Messages sent from the server to the client have the following types - explained
 - `init` - Message type sent when the connection with the game client is successfully initialized, payload contains game client setup information
 - `response` - Sent in response to a `request` message by the game client, payload contains the actual response.
 - `event` - An event has occured that the game client might need to react to, details about the event are in the payload
-- `ping` - A ping message sent to see if the client is still alive
 - `cookie` - A request to set or remove a cookie from the browser (optional)
 - `question` - A request sent when the server wants to ask the user something and requires user input (only needed in some games)
 
 When the client sends messages, they can only be one of the following types - explained in detail in the ***Client messages*** section:
 
 - `request` - Perform an action on the server (eg. bet, get-balance, ...), the payload describes which request to execute and with what parameters
-- `pong` - Client should respond with a message of this type after receiving a `ping` message from the server
 - `response` - When a `question` is received from the server and the user has given their input, this is sent to confirm the user's selection
 
 #### `sentTS`
@@ -192,89 +190,7 @@ Example event:
 ```
 
 Many events are game-type-specific, so they are added as a new type of game is being integrated and are only relevant for that game type.
-The few events that are common to all game clients are:
-
-- `player-joined`: a player has joined the game you are in
-- `player-left`: a player has left the game you are in
-- `void`: the game that you are playing has been void (cancelled) and any bets will be restored to balance
-- `balance-update`: account balance changed.
-    The `data` looks like this:
-    ```javascript
-    {
-        "source": string,         // can be "game", "game-bonus", "jackpot" or "external"
-        "old": Array<uint64>,     // the old balance
-        "new": Array<uint64>      // the current balance
-    }
-    ```
-- `lock`: the player account has been locked - the client must disable play and show the sent message until the lock is lifted.
-    The `data` looks like this:
-    ```javascript
-    {
-        "reason": string,
-        "message": string
-    }
-    ```
-- `unlock`: the player account has been unlocked - the client can enable normal play.
-- `payout`: A payout attempt has been made.
-    The `data` looks like this:
-    ```javascript
-    {
-        "success": boolean,     // true if the payout succeeded
-        "amount": int64         // the amount that was paid out or attempted to be paid out
-    }
-    ```
-- `authentication-required`: the server requests that the client authenticate by providing login credentials. After this event, the client should prompt the player for login credentials and perform an `authenticate` request with the player's input.
-    The `data` looks like this:
-    ```javascript
-    {
-        "registration": boolean    // if this is a player registering (true) or just logging in (false)
-    }
-    ```
-- `bet`: a bet was handled by the accounting service.
-    The `data` looks like this:
-    ```javascript
-    {
-        "success": boolean,    // true/false if the bet succeeded
-        "bet": Array<uint64>,  // array of credit type amounts that was bet
-        "message": string      // a message about what happened
-    }
-    ```
-- `game-round-start`: a new game was started.
-    The `data` looks like this:
-    ```javascript
-    {
-        "gameroundID": string,    // the ID of the game that is now in progress
-        "bet": Array<uint64>      // array of credit type amounts that was bet
-    }
-    ```
-- `game-round-end`: the game you have bet in has ended.
-    The `data` looks like this:
-    ```javascript
-    {
-        "message": string,          // a message about what happened
-        "won": Array<uint64>,       // array of credit type amounts that the player won
-        "balance": Array<uint64>,   // the current balance (after the win is accounted)
-        "result": string            // can be "won", "no win"(lost) or "bet restored"(game was void)
-    }
-    ```
-- `chat`: a player has sent a message.
-    The `data` looks like this:
-    ```javascript
-    {
-        "msg": string,      // the message to display
-        "from": string,     // player ID of the sender
-        "private": boolean  // true if sent as a direct message to the client that received this event, false if it's for everyone
-    }
-    ```
-- `action`: a remote action was triggered (landbase integration) - the game should perform the appropriate procedures that this action implies.
-    The `data` looks like this:
-    ```javascript
-    {
-        "type": string,   // enum as described under the 'support-actions' request in section __*Requests*__
-        "action": string, // optional, if not present OR empty, the general action of type 'type' should be executed
-        "context": any    // optional, can be null - any extra information that the action requires
-    }
-    ```
+See the Events documentation for more information on events.
 
 ### Init
 
@@ -321,20 +237,22 @@ The initialization message is sent by the server only uppon successfull connecti
             "config": {}                      // game-type-specific object
         },
         "account": {
-            "UID": string,                  // usefull to know which player is you in player listing, chatting, win reporting of multiple players, etc...
-            "name": string,                 // name of the player account (usually something like username)
-            "nickname": string,             // nickname of the player account (name to display, can be the same as "name")
-            "session": string,              // session ID of this player
-            "settings": {},                 // list or persistent settings for this account
-            "demo": bool,                   // true/false if this is a demo account (the game can decide to display extra things if this is enabled - like outcome forcing)
-            "payout-enabled": bool,         // true/false if payout requests from the game client are enabled for this accounting service (game can show a payout button if this is enabled)
-            "logout-supported": bool,       // true/false if logging out of the player account is enabled for this accounting service (game can show a logout button if this is enabled)
-            "show-username": bool           // If true, the "name" of the player account should be displayed instead of the "nickname"
+            "UID": string,                          // usefull to know which player is you in player listing, chatting, win reporting of multiple players, etc...
+            "name": string,                         // name of the player account (usually something like username)
+            "nickname": string,                     // nickname of the player account (name to display, can be the same as "name")
+            "session": string,                      // session ID of this player
+            "settings": {},                         // list or persistent settings for this account
+            "demo": bool,                           // true/false if this is a demo account (the game can decide to display extra things if this is enabled - like outcome forcing)
+            "payout-enabled": bool,                 // true/false if payout requests from the game client are enabled for this accounting service (game can show a payout button if this is enabled)
+            "logout-supported": bool,               // true/false if logging out of the player account is enabled for this accounting service (game can show a logout button if this is enabled)
+            "show-username": bool,                  // If true, the "name" of the player account should be displayed instead of the "nickname"
+            "unfinished": AccountingSnapshotObject  // game snapshot of an unfinished game, or null
         },
         "denomination": double,             // The value of a single credit in units of "currency"
         "currency": string,                 // The currency used by this player
         "currency-value": double,           // The approximate value of this currency in EUR (how many EUR is 1.00 of "currency")
         "history": Array<GameSnapshotObject>,  // list of previouslly played games for this player account
+        "accounting-history": Array<AccountingSnapshotObject>,  // list of previouslly played games for this player account
         "version": {                           // server version
             "major": 2,
             "minor": 0,
@@ -419,37 +337,9 @@ The response to a choice question is an array of integers which represent the in
 The structure of `data` in choices is determined by the question `topic`.
 Currently, choice questions are only used in specific games, so you don't need to worry about `data` - it will be tailored to the needs of the client when a game is integrated and needs this functionallity.
 
-### Ping
-
-A server sends a `ping` message every once in a while. The client should respond to this message immediately with a message of type `pong`.
-The payload of the `pong` response the client sends must contain a member `received` which is set to the value of `sentTS` in the `ping` message.
-Example server ping:
-
-```javascript
-{
-    "type": "ping",
-    "sentTS": 1845729893584,
-    "contextID": 26,
-    "payload": null
-}
-```
-
-The client should respond to this immediately with:
-
-```javascript
-{
-    "type": "pong",
-    "sentTS": 1845729893672,
-    "contextID": 26,
-    "payload": {
-        "received": 1845729893584       // same as sentTS of the server message
-    }
-}
-```
-
 ## Client messages
 
-Client-initiated message types `response` and `pong` were already covered above. So in this section we will be covering
+Client-initiated message type `response` is already covered above. So in this section we will be covering
 
 ### Requests
 
