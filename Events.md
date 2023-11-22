@@ -184,16 +184,7 @@ Triggered when the locked state changes
 #### Event Data
 
 ```javascript
-{
-   "new" : 
-   [
-       // <string>  []
-   ], // <array> 
-   "old" : 
-   [
-       // <string>  []
-   ] // <array> 
-} // <object> 
+ // <object> 
 ```
 
 ---
@@ -298,9 +289,19 @@ No data passed with this event.
 
 ---
 
+### user-setting-changed
+
+Triggered when the player changes a setting
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
 ### void
 
-Triggered the game round you are in is voided
+Triggered when the game round you are in is voided
 
 #### Event Data
 
@@ -338,6 +339,36 @@ No data passed with this event.
 
 ---
 
+### module-reconfigured
+
+Trigered when a critical setting of the module changes, requiring game lists to be re-created
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### module-status
+
+Triggered when the status of a module changes
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### game-state
+
+Triggered when the module becomes ready, contains the state of the game
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
 ### player-joined
 
 Triggered when a new player joins this game host
@@ -350,7 +381,7 @@ No data passed with this event.
 
 ### player-left
 
-Triggered when a pleyer leaves this game host
+Triggered when a player leaves this game host
 
 #### Event Data
 
@@ -367,6 +398,26 @@ Each game type is a little different, so there are some events which are only tr
 ### config-changed
 
 If the configuration of the host changes, this is fired
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### croupier
+
+Triggered when a croupier leaves a table or a new one joins.
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### croupier-changed
+
+Triggered when the croupier hosting this live game changes
 
 #### Event Data
 
@@ -417,6 +468,16 @@ No data passed with this event.
 ### stakeChanged
 
 Triggered when the selected stake changes
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### wheel-status
+
+Triggered when information about the wheel is updated
 
 #### Event Data
 
