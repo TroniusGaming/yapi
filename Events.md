@@ -184,7 +184,14 @@ Triggered when the locked state changes
 #### Event Data
 
 ```javascript
-null
+{
+   "new": [
+      ""
+   ],
+   "old": [
+      ""
+   ]
+}
 ```
 
 ---

@@ -138,7 +138,15 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
-null
+{
+   "admin": false,
+   "domain": "",
+   "version": {
+      "major": 0,
+      "minor": 0,
+      "revision": 0
+   }
+}
 ```
 
 
@@ -162,7 +170,11 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
-null
+{
+   "birthdate": "",
+   "location": "",
+   "name": ""
+}
 ```
 
 - **400 *(Bad Request)*** | Missing 'id'
@@ -190,7 +202,29 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
-null
+{
+   "balance": {
+      "after": [],
+      "before": []
+   },
+   "data": null,
+   "endT": 0,
+   "endpoint": "",
+   "startT": 0,
+   "totalBet": [],
+   "totalWin": [],
+   "transactions": [
+      {
+         "aid": "",
+         "credits": [],
+         "data": null,
+         "gid": "",
+         "id": "",
+         "result": "",
+         "source": ""
+      }
+   ]
+}
 ```
 
 
@@ -240,7 +274,63 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
-null
+[
+   {
+      "actions": {
+         "exampleMember1": {
+            "schema": {
+               "default": {},
+               "schema": {
+                  "exampleMember1": {
+                     "child-schema": null,
+                     "constraints": [
+                        [
+                           {
+                              "type": "",
+                              "value": null
+                           }
+                        ]
+                     ],
+                     "desc": "",
+                     "edit-conditions": {
+                        "exampleMember1": [
+                           {
+                              "type": "",
+                              "value": null
+                           }
+                        ]
+                     },
+                     "flags": [
+                        ""
+                     ],
+                     "interval": 0.0,
+                     "max-children": 0,
+                     "min-children": 0,
+                     "optional": false,
+                     "type": ""
+                  }
+               }
+            },
+            "type": ""
+         }
+      },
+      "config-error": "",
+      "configured": false,
+      "domain": "",
+      "id": 0,
+      "isFull": false,
+      "maxPlayers": 0,
+      "name": "",
+      "owner": "",
+      "players": 0,
+      "raw-config": {},
+      "ready": false,
+      "status": "",
+      "type": 0,
+      "type-name": "",
+      "uid": ""
+   }
+]
 ```
 
 - **400 *(Bad Request)*** | Module type invalid or too many URL fragments
@@ -340,7 +430,39 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
-null
+{
+   "default": {},
+   "schema": {
+      "exampleMember1": {
+         "child-schema": null,
+         "constraints": [
+            [
+               {
+                  "type": "",
+                  "value": null
+               }
+            ]
+         ],
+         "desc": "",
+         "edit-conditions": {
+            "exampleMember1": [
+               {
+                  "type": "",
+                  "value": null
+               }
+            ]
+         },
+         "flags": [
+            ""
+         ],
+         "interval": 0.0,
+         "max-children": 0,
+         "min-children": 0,
+         "optional": false,
+         "type": ""
+      }
+   }
+}
 ```
 
 - **400 *(Bad Request)*** | module or type not given, or could not be parsed
@@ -383,7 +505,29 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
-null
+{
+   "balance": {
+      "after": [],
+      "before": []
+   },
+   "data": null,
+   "endT": 0,
+   "endpoint": "",
+   "startT": 0,
+   "totalBet": [],
+   "totalWin": [],
+   "transactions": [
+      {
+         "aid": "",
+         "credits": [],
+         "data": null,
+         "gid": "",
+         "id": "",
+         "result": "",
+         "source": ""
+      }
+   ]
+}
 ```
 
 - **400 *(Bad Request)*** | Missing 'p', or one of 'r', 'a'
@@ -511,7 +655,7 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
-null
+""
 ```
 
 - **400 *(Bad Request)*** | Missing 'name', 'location' or 'birthdate'

@@ -20,7 +20,36 @@ No request parameters required.
 Returns a list of accounting round snapshots - played rounds of this player
 
 ```javascript
-null
+[
+   {
+      "aid": "",
+      "balance": {
+         "after": [],
+         "before": []
+      },
+      "data": null,
+      "denom": 0.0,
+      "endT": 0,
+      "endpoint": "",
+      "grounds": [
+         ""
+      ],
+      "startT": 0,
+      "totalBet": [],
+      "totalWin": [],
+      "transactions": [
+         {
+            "aid": "",
+            "credits": [],
+            "data": null,
+            "gid": "",
+            "id": "",
+            "result": "",
+            "source": ""
+         }
+      ]
+   }
+]
 ```
 
 ---
@@ -34,7 +63,11 @@ Change the enabled status of a registered action (landbase integration)
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+{
+   "action": "",
+   "enabled": false,
+   "type": ""
+}
 ```
 
 #### Return Value
@@ -56,7 +89,7 @@ No request parameters required.
 Returns the current credit balance of the player
 
 ```javascript
-null
+[]
 ```
 
 ---
@@ -84,7 +117,10 @@ Post a message in chat [request is unavailable if player is locked in UserLock o
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+{
+   "message": "",
+   "to": ""
+}
 ```
 
 #### Return Value
@@ -92,7 +128,7 @@ null
 Returns true if the message was sent, false if it was not (if it's a targeted message and the target player could not be found or has chat disabled)
 
 ```javascript
-null
+false
 ```
 
 ---
@@ -106,7 +142,13 @@ Update the state of this client
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+{
+   "flags": [
+      ""
+   ],
+   "state": "",
+   "subState": 0
+}
 ```
 
 #### Return Value
@@ -142,7 +184,39 @@ No request parameters required.
 Returns a list of game round snapshots - played rounds of this player
 
 ```javascript
-null
+[
+   {
+      "aid": "",
+      "balance": {
+         "after": [],
+         "before": []
+      },
+      "data": null,
+      "endT": 0,
+      "endpoint": "",
+      "gameType": "",
+      "gid": "",
+      "host": "",
+      "randoms": [
+         0.0
+      ],
+      "startT": 0,
+      "totalBet": [],
+      "totalWin": [],
+      "transactions": [
+         {
+            "aid": "",
+            "credits": [],
+            "data": null,
+            "gid": "",
+            "id": "",
+            "result": "",
+            "source": ""
+         }
+      ],
+      "void": false
+   }
+]
 ```
 
 ---
@@ -170,7 +244,10 @@ Write a log [request is unavailable if player is locked in Blocked]
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+{
+   "msg": "",
+   "verbosity": "Normal"
+}
 ```
 
 #### Return Value
@@ -216,7 +293,12 @@ Set the help screen information (landbase integration)
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+{
+   "body": null,
+   "resources": [
+      ""
+   ]
+}
 ```
 
 #### Return Value
@@ -224,7 +306,9 @@ null
 Returns a map of registered resource names (name:resourceID) as a JSON object
 
 ```javascript
-null
+{
+   "exampleMember1": ""
+}
 ```
 
 ---
@@ -238,7 +322,10 @@ Persistently save a player setting [request is unavailable if player is locked i
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+{
+   "name": "",
+   "value": ""
+}
 ```
 
 #### Return Value
@@ -260,7 +347,10 @@ Lock this play station [request is unavailable if player is locked in UserClose 
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+{
+   "lock": false,
+   "message": ""
+}
 ```
 
 #### Return Value
@@ -278,7 +368,21 @@ Register supported actions for this game (landbase integration)
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+[
+   {
+      "actions": [
+         {
+            "enabled": true,
+            "name": "",
+            "requiredContext": null
+         }
+      ],
+      "enabled": true,
+      "onlySubactions": false,
+      "requiredContext": null,
+      "type": ""
+   }
+]
 ```
 
 #### Return Value
@@ -286,7 +390,7 @@ null
 Returns the total number of actions successfully parsed
 
 ```javascript
-null
+0
 ```
 
 ---
@@ -304,7 +408,10 @@ No request parameters required.
 Returns the authentication result
 
 ```javascript
-null
+{
+   "sid": "",
+   "success": false
+}
 ```
 
 ---
@@ -344,7 +451,13 @@ Request parameters are **optional** and are parsed with the following schema:
 Returns a list of players on this host (keys are player IDs)
 
 ```javascript
-null
+{
+   "exampleMember1": {
+      "chat": false,
+      "nickname": "",
+      "number": 0
+   }
+}
 ```
 
 ---
@@ -362,7 +475,7 @@ No request parameters required.
 Returns the current number of players on this game host
 
 ```javascript
-null
+0
 ```
 
 ---
@@ -394,7 +507,19 @@ Additionally, the type of the response to the ***bet*** request (see above) is a
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
-null
+{
+   "betPresets": {
+      "exampleMember1": 0
+   },
+   "bets": [
+      {
+         "X": 0,
+         "Y": 0,
+         "amount": 0
+      }
+   ],
+   "gameID": 0
+}
 ```
 
 The return value of **bet** requests on this game host look like this:
@@ -416,7 +541,7 @@ No request parameters required.
 If successful
 
 ```javascript
-null
+{}
 ```
 
 ---
@@ -434,7 +559,12 @@ No request parameters required.
 If successful
 
 ```javascript
-null
+[
+   [
+      0,
+      0
+   ]
+]
 ```
 
 ---
@@ -448,7 +578,7 @@ Select a stake [request is unavailable if player is locked in UserLock or UserCl
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+0
 ```
 
 #### Return Value
@@ -456,7 +586,90 @@ null
 If successful
 
 ```javascript
-null
+{
+   "betTypes": {
+      "12to1": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "18to1": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "2to1": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "36to1": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "3to1": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "6to1": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "7to1": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "9to1": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "le-finali-3": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "le-finali-4": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "le-finali-5": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "les-figures": {
+         "max": 0,
+         "min": 0,
+         "multiple": 1
+      },
+      "tout-va": {
+         "multiplier": 81
+      },
+      "tout-va-3": {
+         "multiplier": 145
+      },
+      "tout-va-5": {
+         "multiplier": 50
+      }
+   },
+   "chipValues": [
+      1,
+      2,
+      5,
+      10,
+      20
+   ],
+   "maxBet": 0,
+   "maxNumBets": 0,
+   "minBet": 0,
+   "tableWinLimit": 0
+}
 ```
 
 ---
@@ -479,7 +692,16 @@ Does not return anything (null)
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
-null
+[
+   {
+      "action": "bet",
+      "context": []
+   },
+   {
+      "action": "play",
+      "context": null
+   }
+]
 ```
 
 The return value of **bet** requests on this game host look like this:
@@ -497,7 +719,12 @@ Perform a Gameart action
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+[
+   {
+      "action": "",
+      "context": null
+   }
+]
 ```
 
 #### Return Value
@@ -505,7 +732,12 @@ null
 If actions were executed successfully
 
 ```javascript
-null
+[
+   {
+      "context": null,
+      "event": ""
+   }
+]
 ```
 
 ---
@@ -528,7 +760,18 @@ Does not return anything (null)
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
-null
+{
+   "betPresets": {
+      "exampleMember1": 0
+   },
+   "bets": [
+      {
+         "X": 0,
+         "Y": 0,
+         "amount": 0
+      }
+   ]
+}
 ```
 
 The return value of **bet** requests on this game host look like this:
@@ -543,7 +786,12 @@ No special requests for this host
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
-null
+[
+   {
+      "action": "",
+      "context": null
+   }
+]
 ```
 
 The return value of **bet** requests on this game host look like this:
@@ -561,7 +809,12 @@ Perform a Gameart action
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
-null
+[
+   {
+      "action": "",
+      "context": null
+   }
+]
 ```
 
 #### Return Value
@@ -569,7 +822,12 @@ null
 If actions were executed successfully
 
 ```javascript
-null
+[
+   {
+      "context": null,
+      "event": ""
+   }
+]
 ```
 
 ---
@@ -592,7 +850,9 @@ Does not return anything (null)
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
-null
+{
+   "type": ""
+}
 ```
 
 The return value of **bet** requests on this game host look like this:
@@ -607,7 +867,14 @@ No special requests for this host
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
-null
+{
+   "betPresets": {
+      "exampleMember1": 0
+   },
+   "bets": [
+      0
+   ]
+}
 ```
 
 The return value of **bet** requests on this game host look like this:
@@ -648,7 +915,14 @@ Does not return anything (null)
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
-null
+{
+   "betPresets": {
+      "exampleMember1": 0
+   },
+   "bets": [
+      0
+   ]
+}
 ```
 
 The return value of **bet** requests on this game host look like this:
