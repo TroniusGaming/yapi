@@ -20,7 +20,7 @@ No request parameters required.
 Returns a list of accounting round snapshots - played rounds of this player
 
 ```javascript
- // <array> List of actions
+null
 ```
 
 ---
@@ -34,7 +34,7 @@ Change the enabled status of a registered action (landbase integration)
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <object> [REQUIRED] 
+null
 ```
 
 #### Return Value
@@ -56,7 +56,7 @@ No request parameters required.
 Returns the current credit balance of the player
 
 ```javascript
- // <array> The balance of the player
+null
 ```
 
 ---
@@ -84,7 +84,7 @@ Post a message in chat [request is unavailable if player is locked in UserLock o
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <object> [REQUIRED] 
+null
 ```
 
 #### Return Value
@@ -92,7 +92,7 @@ Request parameters are **required** and are parsed with the following schema:
 Returns true if the message was sent, false if it was not (if it's a targeted message and the target player could not be found or has chat disabled)
 
 ```javascript
- // <bool> True/false indicating if the message was sent
+null
 ```
 
 ---
@@ -106,7 +106,7 @@ Update the state of this client
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <object> [REQUIRED] 
+null
 ```
 
 #### Return Value
@@ -142,7 +142,7 @@ No request parameters required.
 Returns a list of game round snapshots - played rounds of this player
 
 ```javascript
- // <array> List of actions
+null
 ```
 
 ---
@@ -170,7 +170,7 @@ Write a log [request is unavailable if player is locked in Blocked]
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <object> [REQUIRED] 
+null
 ```
 
 #### Return Value
@@ -216,7 +216,7 @@ Set the help screen information (landbase integration)
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <object> [REQUIRED] 
+null
 ```
 
 #### Return Value
@@ -224,7 +224,7 @@ Request parameters are **required** and are parsed with the following schema:
 Returns a map of registered resource names (name:resourceID) as a JSON object
 
 ```javascript
- // <object> Map of registered resources
+null
 ```
 
 ---
@@ -238,7 +238,7 @@ Persistently save a player setting [request is unavailable if player is locked i
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <object> [REQUIRED] 
+null
 ```
 
 #### Return Value
@@ -246,7 +246,7 @@ Request parameters are **required** and are parsed with the following schema:
 Returns the new value of the parameter
 
 ```javascript
- // <any> Value of the parameter (same type as provided in request parameters)
+null
 ```
 
 ---
@@ -260,7 +260,7 @@ Lock this play station [request is unavailable if player is locked in UserClose 
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <object> [REQUIRED] 
+null
 ```
 
 #### Return Value
@@ -278,7 +278,7 @@ Register supported actions for this game (landbase integration)
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <array> [REQUIRED] List of actions supported by the game
+null
 ```
 
 #### Return Value
@@ -286,7 +286,7 @@ Request parameters are **required** and are parsed with the following schema:
 Returns the total number of actions successfully parsed
 
 ```javascript
- // <uint> Number of actions [ | values must be in intervals of 1.000000]
+null
 ```
 
 ---
@@ -304,7 +304,7 @@ No request parameters required.
 Returns the authentication result
 
 ```javascript
- // <object> 
+null
 ```
 
 ---
@@ -319,10 +319,10 @@ No request parameters required.
 
 #### Return Value
 
-Different game types return different values, see the game-speciic requests section
+Different game types return different values, see the game-specific requests section
 
 ```javascript
- // <any> [optional] 
+null
 ```
 
 ---
@@ -336,7 +336,7 @@ Get the list of players on this game host [request is unavailable if player is l
 Request parameters are **optional** and are parsed with the following schema:
 
 ```javascript
-0 // <uint> [optional] The i-th page of players (or get all players if == 0) [ | values must be in intervals of 1.000000]
+0
 ```
 
 #### Return Value
@@ -344,7 +344,7 @@ Request parameters are **optional** and are parsed with the following schema:
 Returns a list of players on this host (keys are player IDs)
 
 ```javascript
- // <object> List of players
+null
 ```
 
 ---
@@ -362,7 +362,7 @@ No request parameters required.
 Returns the current number of players on this game host
 
 ```javascript
- // <uint> Current number of players on the host [ | values must be in intervals of 1.000000]
+null
 ```
 
 ---
@@ -377,10 +377,10 @@ No request parameters required.
 
 #### Return Value
 
-If successfull
+If successful
 
 ```javascript
- // <any> [optional] The state of the game
+null
 ```
 
 ---
@@ -394,13 +394,13 @@ Additionally, the type of the response to the ***bet*** request (see above) is a
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
- // <object> [REQUIRED] 
+null
 ```
 
 The return value of **bet** requests on this game host look like this:
 
 ```javascript
- // <any> [optional] 
+null
 ```
 
 ### config
@@ -413,10 +413,10 @@ No request parameters required.
 
 #### Return Value
 
-If successfull
+If successful
 
 ```javascript
- // <object> The config of this roulette game
+null
 ```
 
 ---
@@ -434,7 +434,7 @@ No request parameters required.
 If successful
 
 ```javascript
- // <array> List of games played on this host
+null
 ```
 
 ---
@@ -448,15 +448,15 @@ Select a stake [request is unavailable if player is locked in UserLock or UserCl
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <uint> [REQUIRED] The index of the stake to select [ | values must be in intervals of 1.000000]
+null
 ```
 
 #### Return Value
 
-If successfull
+If successful
 
 ```javascript
- // <object> The configuration of the stake
+null
 ```
 
 ---
@@ -479,13 +479,13 @@ Does not return anything (null)
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
- // <array> [REQUIRED] List of actions to execute
+null
 ```
 
 The return value of **bet** requests on this game host look like this:
 
 ```javascript
- // <any> [optional] 
+null
 ```
 
 ### action
@@ -497,7 +497,7 @@ Perform a Gameart action
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <array> [REQUIRED] An array of actions to perform
+null
 ```
 
 #### Return Value
@@ -505,7 +505,7 @@ Request parameters are **required** and are parsed with the following schema:
 If actions were executed successfully
 
 ```javascript
- // <array> Array of triggered events
+null
 ```
 
 ---
@@ -528,13 +528,13 @@ Does not return anything (null)
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
- // <object> [REQUIRED] 
+null
 ```
 
 The return value of **bet** requests on this game host look like this:
 
 ```javascript
- // <any> [optional] 
+null
 ```
 
 No special requests for this host
@@ -543,13 +543,13 @@ No special requests for this host
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
- // <array> [REQUIRED] List of actions to execute
+null
 ```
 
 The return value of **bet** requests on this game host look like this:
 
 ```javascript
- // <any> [optional] 
+null
 ```
 
 ### action
@@ -561,7 +561,7 @@ Perform a Gameart action
 Request parameters are **required** and are parsed with the following schema:
 
 ```javascript
- // <array> [REQUIRED] An array of actions to perform
+null
 ```
 
 #### Return Value
@@ -569,7 +569,7 @@ Request parameters are **required** and are parsed with the following schema:
 If actions were executed successfully
 
 ```javascript
- // <array> Array of triggered events
+null
 ```
 
 ---
@@ -592,16 +592,113 @@ Does not return anything (null)
 
 The parameters of **bet** requests on this game host should conform with the following schema:
 ```javascript
- // <object> [REQUIRED] 
+null
 ```
 
 The return value of **bet** requests on this game host look like this:
 
 ```javascript
- // <any> [optional] 
+null
 ```
 
 No special requests for this host
+
+## VirtualBaccarat
+
+The parameters of **bet** requests on this game host should conform with the following schema:
+```javascript
+null
+```
+
+The return value of **bet** requests on this game host look like this:
+
+```javascript
+null
+```
+
+### free-game
+
+Play game without bet [request is unavailable if player is locked in any lock level]
+
+#### Parameters
+
+No request parameters required.
+
+#### Return Value
+
+Does not return anything (null)
+
+---
+
+### shuffleCards
+
+Player requested reshuffeling of cards [request is unavailable if player is locked in any lock level]
+
+#### Parameters
+
+No request parameters required.
+
+#### Return Value
+
+Does not return anything (null)
+
+---
+
+## Baccarat
+
+The parameters of **bet** requests on this game host should conform with the following schema:
+```javascript
+null
+```
+
+The return value of **bet** requests on this game host look like this:
+
+```javascript
+null
+```
+
+No special requests for this host
+
+## Evolution
+
+The parameters of **bet** requests on this game host should conform with the following schema:
+```javascript
+null
+```
+
+The return value of **bet** requests on this game host look like this:
+
+```javascript
+null
+```
+
+### credit
+
+Credit result of a game (win or loss - loss has credit amout 0)
+
+#### Parameters
+
+No request parameters required.
+
+#### Return Value
+
+Does not return anything (null)
+
+---
+
+### void
+
+Void a game round
+
+#### Parameters
+
+No request parameters required.
+
+#### Return Value
+
+Does not return anything (null)
+
+---
 
 ## Provider-Specific Player Requests
 

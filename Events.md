@@ -117,9 +117,9 @@ No data passed with this event.
 
 ---
 
-### client-event
+### gamble
 
-Called for every event that occurs on a spectated client
+Triggered when the player gambles credits or wins gambled credits
 
 #### Event Data
 
@@ -184,7 +184,7 @@ Triggered when the locked state changes
 #### Event Data
 
 ```javascript
- // <object> 
+null
 ```
 
 ---
@@ -331,7 +331,7 @@ No data passed with this event.
 
 ### module-event
 
-Trigered for every event on this host - only forwarded to and viewers of this module
+Triggered for every event on this host - only forwarded to and viewers of this module
 
 #### Event Data
 
@@ -341,7 +341,7 @@ No data passed with this event.
 
 ### module-reconfigured
 
-Trigered when a critical setting of the module changes, requiring game lists to be re-created
+Triggered when a critical setting of the module changes, requiring game lists to be re-created
 
 #### Event Data
 
@@ -398,16 +398,6 @@ Each game type is a little different, so there are some events which are only tr
 ### config-changed
 
 If the configuration of the host changes, this is fired
-
-#### Event Data
-
-No data passed with this event.
-
----
-
-### croupier
-
-Triggered when a croupier leaves a table or a new one joins.
 
 #### Event Data
 
@@ -487,7 +477,7 @@ No data passed with this event.
 
 ### win-report
 
-Triggered when a game ends to report wins that have occured
+Triggered when a game ends to report wins that have occurred
 
 #### Event Data
 
@@ -516,6 +506,114 @@ No data passed with this event.
 No special events for this host
 
 ## Blackjack
+
+No special events for this host
+
+## VirtualBaccarat
+
+### game-state-changed
+
+Sent new card
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### stakeChanged
+
+Triggered when the selected stake changes
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+## Baccarat
+
+### chat-toggle
+
+Triggered when the chat is toggled
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### config-changed
+
+If the configuration of the host changes, this is fired
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### croupier
+
+Triggered when a croupier leaves a table or a new one joins.
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### croupier-changed
+
+Triggered when the croupier hosting this live game changes
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### cut-card-pulled
+
+Triggered when a cut card is drawn
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### game-state-changed
+
+Sent when a variable describing the state of the game changes
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### stakeChanged
+
+Triggered when the selected stake changes
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+### win-report
+
+Triggered when a game ends to report wins that have occurred
+
+#### Event Data
+
+No data passed with this event.
+
+---
+
+## Evolution
 
 No special events for this host
 

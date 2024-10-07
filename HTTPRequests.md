@@ -27,7 +27,7 @@ The following HTTP response codes can occur:
 - **204 *(No Content)*** | The resource being uploaded seems to be empty (zero Content-Length or empty HTTP body)
 - **400 *(Bad Request)*** | resourceID was not given
 - **404 *(Not Found)*** | A resource with the given ID was not found (a place for it has to be reserved by a Player API request)
-- **500 *(Internal Server Error)*** | An error occured while saving the resource to the server
+- **500 *(Internal Server Error)*** | An error occurred while saving the resource to the server
 
 ---
 
@@ -45,7 +45,7 @@ The following HTTP response codes can occur:
 - **204 *(No Content)*** | The resource has not yet loaded
 - **400 *(Bad Request)*** | resourceID was not given
 - **404 *(Not Found)*** | A resource with the given ID was not found
-- **500 *(Internal Server Error)*** | An error occured while reading the resource
+- **500 *(Internal Server Error)*** | An error occurred while reading the resource
 
 ---
 
@@ -99,7 +99,7 @@ The following HTTP response codes can occur:
 - **400 *(Bad Request)*** | Provider or host ID not given or too many URL fragments
 - **401 *(Unauthorized)*** | No permission to launch games or account/IP is banned
 - **404 *(Not Found)*** | Host:game combo not found or provider not found or session timed out
-- **500 *(Internal Server Error)*** | Unknown error occured
+- **500 *(Internal Server Error)*** | Unknown error occurred
 
 ---
 
@@ -138,7 +138,7 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
- // <object> 
+null
 ```
 
 
@@ -162,7 +162,7 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
- // <object> Information about the croupier
+null
 ```
 
 - **400 *(Bad Request)*** | Missing 'id'
@@ -190,7 +190,7 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
- // <object> 
+null
 ```
 
 
@@ -240,7 +240,7 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
- // <array> List of modules
+null
 ```
 
 - **400 *(Bad Request)*** | Module type invalid or too many URL fragments
@@ -282,16 +282,17 @@ Create a Player endpoint
 
 The following query parameters are parsed:
 
-- **autorebet-override** | bool *[optional]* | The virtual credit multiplier
+- **autorebet-override** | bool *[optional - default null]* | The virtual credit multiplier
 - **credit-scale** | uint *[optional - default 1]* | The virtual credit multiplier |  | values must be in intervals of 1.000000
 - **demo** | bool *[optional - default false]* | True to launch a demo version of the game
 - **dev** | bool *[optional - default false]* | If true, use dev launch url
 - **drop-on-disconnect** | bool *[optional - default false]* | If true, drop player when he disconnects
 - **game** | string *[required]* | Game configuration to launch
 - **host** | null *[required]* | Host ID or UID
+- **launchOption** | string *[optional - default ""]* | If given, launch the game with this specific launch option
 - **max-bet** | real *[optional - default 0.0]* | The max bet in currency units
 - **max-win** | real *[optional - default 0.0]* | The max possible win in currency units
-- **provider** | uint *[optional - default 0]* | Provider ID or UID |  | values must be in intervals of 1.000000
+- **provider** | null *[optional - default 0]* | Provider ID or UID
 - **sid** | string *[optional - default ""]* | The session
 
 #### Responses
@@ -323,7 +324,7 @@ Must contain the binary file
 The following HTTP response codes can occur:
 
 - **200 *(OK)*** | Successfully uploaded new binary!
-- **500 *(Internal Server Error)*** | An error occured while writing the file
+- **500 *(Internal Server Error)*** | An error occurred while writing the file
 
 ---
 
@@ -339,7 +340,7 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
- // <object> 
+null
 ```
 
 - **400 *(Bad Request)*** | module or type not given, or could not be parsed
@@ -382,7 +383,7 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
- // <object> 
+null
 ```
 
 - **400 *(Bad Request)*** | Missing 'p', or one of 'r', 'a'
@@ -473,6 +474,7 @@ The following query parameters are parsed:
 - **ar** | string *[optional - default ""]* | Accounting round ID
 - **dev** | bool *[optional - default false]* | If true, use dev launch url
 - **endp** | string *[optional - default ""]* | Endpoint
+- **launchOption** | string *[optional - default ""]* | If given, launch the game with this specific launch option
 - **player** | string *[required]* | Player username
 - **provider** | null *[required]* | Provider ID or UID
 - **round** | string *[optional - default ""]* | Gameround ID
@@ -509,7 +511,7 @@ The following HTTP response codes can occur:
 
 - **200 *(OK)*** | The body of the HTTP response is a JSON value with the following schema
 ```javascript
- // <string> The badge ID which was created
+null
 ```
 
 - **400 *(Bad Request)*** | Missing 'name', 'location' or 'birthdate'
