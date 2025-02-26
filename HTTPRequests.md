@@ -236,7 +236,7 @@ The following HTTP response codes can occur:
 
 ***GET*** | **/query/[module]/*/***
 
-Query special methods on specific module instances (host or provider)
+Query special methods on specific module instances ('hosts' or 'providers')
 
 #### Responses
 
